@@ -1,11 +1,28 @@
 version: '3'
-
 services:
   server:
-    container_name: server
+    container_name: game_server
     build: .
-    tty: true
+    # command: python manage.py runserver 0.0.0.0:8000
+    working_dir: /code
+    # tty: true
     ports:
-      - '8000:8000'
+      - 18000:8000
     volumes:
       - .:/code
+    depends_on:
+      - db
+  db:
+    container_name: game_server_db
+    image: mysql:5.7.19
+    restart: always
+    environment:
+      MYSQL_DATABASE: django_docker
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - ./mysql/volumes:/var/lib/mysql
+      - ./mysql/:/etc/mysql/conf.d
+    ports:
+      - 33306:3306
