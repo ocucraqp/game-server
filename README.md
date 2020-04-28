@@ -13,4 +13,4 @@ docker-compose up -d
 docker exec -it server sh
 ```
 
-Access localhost:18000
+Access localhost:8000

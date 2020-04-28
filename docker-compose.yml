@@ -7,7 +7,7 @@ services:
     working_dir: /code
     # tty: true
     ports:
-      - 18000:8000
+      - 8000:8000
     volumes:
       - .:/code
     depends_on:
@@ -25,4 +25,4 @@ services:
       - ./mysql/volumes:/var/lib/mysql
       - ./mysql/:/etc/mysql/conf.d
     ports:
-      - 33306:3306
+      - 3306:3306
