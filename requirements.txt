@@ -3,3 +3,6 @@ djangorestframework
 django-filter
 pytz
 mysqlclient==1.4.6
+coreapi
+Markdown
+Pygments
