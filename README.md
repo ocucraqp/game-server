@@ -13,4 +13,5 @@ docker-compose up -d
 docker exec -it server sh
 ```
 
-Access localhost:8000
+Admin site : localhost:8000/admin/
+API docs : localhost:8000/docs/
