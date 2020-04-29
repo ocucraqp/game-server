@@ -70,5 +70,6 @@ type=['head','body','arm','leg']
 |-|-|-|-|
 |ID|id|||
 |敵|enemy|ForeignKey|Enemy|
+|ユーザー|user|ForeignKey|User|
 |貢献ダメージ|damage|IntegerField|default=0|
 |受け取り済み|received|BooleanField|default=false, 報酬確認されたときTrueに|
