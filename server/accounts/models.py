@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from server.equipments.models import Weapon
 
 
 class User(AbstractBaseUser):
@@ -19,6 +20,13 @@ class User(AbstractBaseUser):
         error_messages={
             'unique': _("A user with that username already exists."),
         },
+    )
+    password = models.CharField(
+        _('password'),
+        max_length=128,
+        unique=True,
+        help_text=_('Required. 128 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        validators=[username_validator],
     )
     email = models.EmailField(_('email address'), blank=True)
     is_staff = models.BooleanField(
@@ -40,7 +48,37 @@ class User(AbstractBaseUser):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
+    PASSWORD_FIELD = 'password'
     REQUIRED_FIELDS = ['email']
+
+    money = models.IntegerField(
+        _('money'),
+        default=0,
+    )
+    st_point = models.IntegerField(
+        _('status point'),
+        default=0,
+    )
+    status_hp = models.IntegerField(
+        _('status hp'),
+        default=1,
+    )
+    status_arm = models.IntegerField(
+        _('status arm'),
+        default=1,
+    )
+    status_luck = models.IntegerField(
+        _('status luck'),
+        default=1,
+    )
+    hp = models.IntegerField(
+        _('current hp'),
+        default=1,
+    )
+    weapon = models.ForeignKey(
+        Weapon,
+        on_delete=models.SET_NULL
+    )
 
     class Meta:
         verbose_name = 'ユーザー'
