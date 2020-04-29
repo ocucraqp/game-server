@@ -13,7 +13,7 @@ docker-compose up -d
 
 コンテナにアクセス．
 ```bash
-docker exec -it server bash
+docker exec -it game_server bash
 ```
 コンテナ内の操作．
 ```bash
