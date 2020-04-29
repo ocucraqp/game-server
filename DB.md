@@ -53,6 +53,8 @@ type=['head','body','arm','leg']
 |攻撃力|atk|IntegerField|default=1|
 |報酬金|reward_money|IntegerField|default=1|
 |報酬ステータスポイント|reward_st_point|IntegerField|default=1|
+|画像|image|ImageField||
+|有効|enabled|BooleanField|default=True, falseのときはこの敵を生成しない|
 
 ## battles.Enemy
 
