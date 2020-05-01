@@ -5,7 +5,7 @@
 |name|variable_name|type|remarks|
 |-|-|-|-|
 |ID|id|||
-|ユーザー名|username|CharField|150字以下|
+|ユーザー名|username|CharField|50字以下, unique=True|
 |パスワード|password|CharField|128字以下|
 |所持金|money|IntegerField|default=0|
 |ステータスポイント|st_point|IntegerField|default=0|
