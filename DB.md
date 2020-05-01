@@ -9,7 +9,7 @@
 |パスワード|password|CharField|128字以下|
 |所持金|money|IntegerField|default=0|
 |ステータスポイント|st_point|IntegerField|default=0|
-|最大体力|status_hp|IntegerField|default=1|
+|最大体力|status_hp|IntegerField|default=10|
 |腕力|status_arm|IntegerField|default=1|
 |筋力|status_muscle|IntegerField|default=1, 後で実装|
 |幸運|status_luck|IntegerField|default=1|
