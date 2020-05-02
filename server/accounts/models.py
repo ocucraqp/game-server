@@ -45,27 +45,27 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['email']
 
     money = models.IntegerField(
-        _('所持金'),
+        '所持金',
         default=0,
     )
     st_point = models.IntegerField(
-        _('ステータスポイント'),
+        'ステータスポイント',
         default=0,
     )
     status_hp = models.IntegerField(
-        _('最大体力'),
+        '最大体力',
         default=1,
     )
     status_arm = models.IntegerField(
-        _('腕力'),
+        '腕力',
         default=1,
     )
     status_luck = models.IntegerField(
-        _('幸運'),
+        '幸運',
         default=1,
     )
     hp = models.IntegerField(
-        _('体力'),
+        '体力',
         default=1,
     )
     weapon = models.ForeignKey(Weapon, on_delete=models.SET_NULL, blank=True, null=True, related_name='users',
