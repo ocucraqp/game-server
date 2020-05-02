@@ -54,7 +54,7 @@ class User(AbstractBaseUser):
     )
     status_hp = models.IntegerField(
         '最大体力',
-        default=1,
+        default=10,
     )
     status_arm = models.IntegerField(
         '腕力',
