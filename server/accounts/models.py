@@ -22,13 +22,6 @@ class User(AbstractBaseUser):
             'unique': _("A user with that username already exists."),
         },
     )
-    password = models.CharField(
-        _('password'),
-        max_length=128,
-        unique=True,
-        help_text=_('Required. 128 characters or fewer. Letters, digits and @/./+/-/_ only.'),
-        validators=[username_validator],
-    )
     email = models.EmailField(_('email address'), blank=True)
     is_staff = models.BooleanField(
         _('staff status'),
@@ -49,31 +42,30 @@ class User(AbstractBaseUser):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
-    PASSWORD_FIELD = 'password'
     REQUIRED_FIELDS = ['email']
 
     money = models.IntegerField(
-        _('money'),
+        _('所持金'),
         default=0,
     )
     st_point = models.IntegerField(
-        _('status point'),
+        _('ステータスポイント'),
         default=0,
     )
     status_hp = models.IntegerField(
-        _('status hp'),
+        _('最大体力'),
         default=1,
     )
     status_arm = models.IntegerField(
-        _('status arm'),
+        _('腕力'),
         default=1,
     )
     status_luck = models.IntegerField(
-        _('status luck'),
+        _('幸運'),
         default=1,
     )
     hp = models.IntegerField(
-        _('current hp'),
+        _('体力'),
         default=1,
     )
     weapon = models.ForeignKey(Weapon, on_delete=models.SET_NULL, blank=True, null=True, related_name='users',
