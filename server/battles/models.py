@@ -68,7 +68,6 @@ class Enemy(models.Model):
         '体力',
         blank=False,
         null=False,
-        default=type.status_hp,
     )
 
 class Contribution(models.Model):
