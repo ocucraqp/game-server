@@ -1,14 +1,12 @@
 from django.db import models
-from ..accounts.models import User
-from django.core.validators import MinValueValidator
+from server.accounts.models import User
+
 
 class EnemyType(models.Model):
     name = models.CharField(
         '名前',
         max_length=100,
-        unique=True,
         help_text='Required. 100 characters or fewer. Letters, digits and @/./+/-/_ only.',
-        # validators=
         error_messages={
             'unique': "An enemy with that name already exists."
         },
@@ -18,28 +16,24 @@ class EnemyType(models.Model):
         blank=False,
         null=False,
         default=1,
-        validators=[MinValueValidator(1, 'HP must 1 or more.')],
     )
     atk = models.IntegerField(
         '攻撃力',
         blank=False,
         null=False,
         default=1,
-        validators=[MinValueValidator(1, 'Attack point must 1 or more.')],
     )
     reward_money = models.IntegerField(
         '報酬金',
         blank=False,
         null=False,
         default=1,
-        validators=[MinValueValidator(1, 'Reward money must 1 or more.')],
     )
     reward_st_point = models.IntegerField(
         '報酬ステータスポイント',
         blank=False,
         null=False,
         default=1,
-        validators=[MinValueValidator(1, 'Reward status point must 1 or more.')],
     )
     image = models.ImageField(
         '画像',
@@ -53,11 +47,14 @@ class EnemyType(models.Model):
             'Unselect this instead of deleting enemy data.'
         ),
     )
+
     class Meta:
-        verbose_name = '敵'
-        verbose_name_plural = '敵'
+        verbose_name = '敵の種類'
+        verbose_name_plural = '敵の種類'
+
     def __str__(self):
         return self.name
+
 
 class Enemy(models.Model):
     type = models.ForeignKey(
@@ -69,6 +66,11 @@ class Enemy(models.Model):
         blank=False,
         null=False,
     )
+
+    class Meta:
+        verbose_name = '敵'
+        verbose_name_plural = '敵'
+
 
 class Contribution(models.Model):
     enemy = models.ForeignKey(
@@ -84,7 +86,6 @@ class Contribution(models.Model):
         blank=False,
         null=False,
         default=0,
-        validators=[MinValueValidator(1, 'Contributed damage must 0 or more.')],
     )
     received = models.BooleanField(
         '受け取り済み',
@@ -93,3 +94,7 @@ class Contribution(models.Model):
             'Designates whether the user got rewards. '
         ),
     )
+
+    class Meta:
+        verbose_name = '貢献度'
+        verbose_name_plural = '貢献度'

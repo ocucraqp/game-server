@@ -8,9 +8,11 @@ class EnemyTypeViewSet(ModelViewSet):
     queryset = EnemyType.objects.all()
     serializer_class = EnemyTypeSerializer
 
+
 class EnemyViewSet(ModelViewSet):
     queryset = Enemy.objects.all()
     serializer_class = EnemySerializer
+
 
 class ContributionViewSet(ModelViewSet):
     queryset = Contribution.objects.all()
