@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'server.accounts',
     'server.equipments',
-    'server.battles',
 ]
 
 MIDDLEWARE = [
