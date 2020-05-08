@@ -1,6 +1,6 @@
 # DB
 
-## accounts.User
+## accounts.User(ユーザー)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
@@ -20,7 +20,7 @@
 |腕防具|equipment_arm|ForeignKey|Equipment, 後で実装|
 |足防具|equipment_leg|ForeignKey|Equipment, 後で実装|
 
-## equipments.Weapon
+## equipments.Weapon(武器)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
@@ -30,7 +30,7 @@
 |値段|price|IntegerField|default=0|
 |必要腕力|required_arm|IntegerField|default=1|
 
-## equipments.Equipment (後で実装)
+## equipments.Equipment(防具) (後で実装)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
@@ -43,7 +43,7 @@
 
 type=['head','body','arm','leg']
 
-## battles.EnemyType
+## battles.EnemyType(敵の種類)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
@@ -56,7 +56,7 @@ type=['head','body','arm','leg']
 |画像|image|ImageField||
 |有効|enabled|BooleanField|default=True, falseのときはこの敵を生成しない|
 
-## battles.Enemy
+## battles.Enemy(敵)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
@@ -64,7 +64,7 @@ type=['head','body','arm','leg']
 |種類|type|ForeignKey|EnemyType|
 |体力|hp|IntegerField|default=EnemyType.status_hp|
 
-## battles.Contribution
+## battles.Contribution(貢献度)
 
 |name|variable_name|type|remarks|
 |-|-|-|-|
