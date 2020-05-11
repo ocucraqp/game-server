@@ -1,52 +1,18 @@
 from django.db import models
+
 from server.accounts.models import User
 
 
 class EnemyType(models.Model):
-    name = models.CharField(
-        '名前',
-        max_length=100,
-        help_text='Required. 100 characters or fewer. Letters, digits and @/./+/-/_ only.',
-        error_messages={
-            'unique': "An enemy with that name already exists."
-        },
-    )
-    status_hp = models.IntegerField(
-        '最大体力',
-        blank=False,
-        null=False,
-        default=1,
-    )
-    atk = models.IntegerField(
-        '攻撃力',
-        blank=False,
-        null=False,
-        default=1,
-    )
-    reward_money = models.IntegerField(
-        '報酬金',
-        blank=False,
-        null=False,
-        default=1,
-    )
-    reward_st_point = models.IntegerField(
-        '報酬ステータスポイント',
-        blank=False,
-        null=False,
-        default=1,
-    )
-    image = models.ImageField(
-        '画像',
-        upload_to='images/'
-    )
-    enabled = models.BooleanField(
-        '有効',
-        default=True,
-        help_text=(
-            'Designates whether this enemy should be treated as active. '
-            'Unselect this instead of deleting enemy data.'
-        ),
-    )
+    name = models.CharField('名前', max_length=100, )
+    status_hp = models.IntegerField('最大体力', blank=False, null=False, default=1, )
+    atk = models.IntegerField('攻撃力', blank=False, null=False, default=1, )
+    reward_money = models.IntegerField('報酬金', blank=False, null=False, default=1, )
+    reward_st_point = models.IntegerField('報酬ステータスポイント', blank=False, null=False, default=1, )
+    image = models.ImageField('画像', upload_to='battles/enemytypes/images/')
+    enabled = models.BooleanField('有効', default=True,
+                                  help_text=('Designates whether this enemy should be treated as active. '
+                                             'Unselect this instead of deleting enemy data.'), )
 
     class Meta:
         verbose_name = '敵の種類'
@@ -57,15 +23,9 @@ class EnemyType(models.Model):
 
 
 class Enemy(models.Model):
-    type = models.ForeignKey(
-        EnemyType,
-        on_delete=models.CASCADE
-    )
-    hp = models.IntegerField(
-        '体力',
-        blank=False,
-        null=False,
-    )
+    type = models.ForeignKey('EnemyType', on_delete=models.CASCADE, related_name='enemies',
+                             verbose_name='敵の種類')
+    hp = models.IntegerField('体力', blank=False, null=False, )
 
     class Meta:
         verbose_name = '敵'
@@ -73,27 +33,12 @@ class Enemy(models.Model):
 
 
 class Contribution(models.Model):
-    enemy = models.ForeignKey(
-        Enemy,
-        on_delete=models.CASCADE
-    )
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
-    damage = models.IntegerField(
-        '貢献ダメージ',
-        blank=False,
-        null=False,
-        default=0,
-    )
-    received = models.BooleanField(
-        '受け取り済み',
-        default=False,
-        help_text=(
-            'Designates whether the user got rewards. '
-        ),
-    )
+    enemy = models.ForeignKey('Enemy', on_delete=models.CASCADE, related_name='contributions',
+                              verbose_name='敵')
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='contributions',
+                             verbose_name='ユーザー')
+    damage = models.IntegerField('貢献ダメージ', blank=False, null=False, default=0, )
+    received = models.BooleanField('受け取り済み', default=False, help_text=('Designates whether the user got rewards. '), )
 
     class Meta:
         verbose_name = '貢献度'
