@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from server.accounts.serializers import UserSerializer
+from server.accounts.models import User
 from server.battles.models import EnemyType, Enemy, Contribution
 
 
@@ -24,3 +25,13 @@ class ContributionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contribution
         fields = '__all__'
+
+class DistributeStatusPointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            model.st_point,
+            model.status_hp,
+            model.status_arm,
+            model.status_luck,
+        ]
