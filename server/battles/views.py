@@ -1,11 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework.decorators import action
 
-from server.accounts.models import User
 from server.battles.models import EnemyType, Enemy, Contribution
-from server.battles.serializers import EnemyTypeSerializer, EnemySerializer, ContributionSerializer, DistributeStatusPointSerializer
+from server.battles.serializers import EnemyTypeSerializer, EnemySerializer, ContributionSerializer
 
 
 class EnemyTypeViewSet(ModelViewSet):
@@ -21,24 +17,3 @@ class EnemyViewSet(ModelViewSet):
 class ContributionViewSet(ModelViewSet):
     queryset = Contribution.objects.all()
     serializer_class = ContributionSerializer
-
-class BattlesViewSet(ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = DistributeStatusPointSerializer
-
-    @action(detail=False, methods=['get'])
-    def get_status_point(self, request):
-        user = request.user
-        queryset = User.objects.filter(username=user)
-        serializer = DistributeStatusPointSerializer(queryset)
-        return Response(serializer.data)
-
-    # DBのUPDATE操作について作る
-    @action(detail=False, methods=['post'])
-    def distribute_status_point(self, request):
-        user = request.user
-        queryset = User.objects.filter(username=user)
-        serializer = DistributeStatusPointSerializer(queryset)
-
-
-

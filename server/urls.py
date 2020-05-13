@@ -19,7 +19,7 @@ from django.urls import path
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 
-import server.battles.urls
+import server.accounts.urls
 from server.accounts.views import UserViewSet
 
 router = DefaultRouter()
@@ -28,6 +28,6 @@ urlpatterns = router.urls
 
 urlpatterns += [
     path('admin/', admin.site.urls),
-    path('battles/', include(server.battles.urls)),
+    path('accounts/', include(server.accounts.urls)),
     url(r'^docs/', include_docs_urls(title='API docs')),
 ]
