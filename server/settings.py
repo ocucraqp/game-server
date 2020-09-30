@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_docker',
         'USER': 'root',
-        'HOST': 'db',
+        'HOST': 'mysql',
         'PORT': 3306,
     }
 }
